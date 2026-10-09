@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="ReTAC: residual test-time agentic computation for video spatial reasoning.">
+    <title>ReTAC — Video Spatial Reasoning</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="site.config.js" defer></script>
+    <script src="site.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <section class="hero">
+        <h1>ReTAC: Residual Test-Time Agentic Computation for Video Spatial Reasoning</h1>
+        <p id="authors" class="authors"></p>
+        <p id="affiliation" class="affiliation"></p>
+        <div class="actions">
+          <a id="paper-link" class="button primary" href="assets/ReTAC.pdf">Paper <span aria-hidden="true">↗</span></a>
+          <a id="arxiv-link" class="button" hidden>arXiv <span aria-hidden="true">↗</span></a>
+          <a id="code-link" class="button" hidden>Code <span aria-hidden="true">↗</span></a>
+          <button id="cite-button" class="button" type="button">BibTeX</button>
+        </div>
+      </section>
+
+      <section class="difference grid-section">
+        <div class="section-label">Why ReTAC?</div>
+        <div class="section-copy">
+          <p class="lead"><strong>Residual test-time agentic computation</strong>: Compute only what remains unresolved, and recompute only what becomes invalid.</p>
+          <div class="difference-list">
+            <div><h2>Fixed pipelines</h2><p>Run the same full workflow for every query, even when the base model already has sufficient evidence.</p></div>
+            <div><h2>Adaptive tool methods</h2><p>Select tools from task context, but do not distinguish requirements already supported by the current model from those that remain unresolved.</p></div>
+            <div><h2>ReTAC</h2><p>Computes only for unresolved requirements, then localizes a failure to planning, perception, or reasoning and recomputes only the affected dependency states.</p></div>
+          </div>
+          <figure class="difference-figure">
+            <img src="assets/figure1-method-comparison.png" alt="Comparison of fixed pipelines, adaptive tools, and ReTAC. ReTAC routes by native unresolved requirements and recomputes only invalidated states.">
+            <figcaption>ReTAC differs in two coupled decisions: it allocates supplementary computation only to requirements unresolved by the current model, and after verification it preserves valid intermediate states rather than restarting the whole trajectory.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="visual-section" aria-label="Overview">
+        <div class="visual-heading"><span>Overview</span></div>
+        <figure>
+          <img src="assets/figure2-overview.png" alt="ReTAC overview with native state, residual routing, planning and evidence acquisition, stage-aligned verification, and selective recovery.">
+          <figcaption>The native attempt records requirements, evidence, and a candidate answer. If all requirements are resolved, ReTAC returns directly; otherwise it plans and acquires only the residual evidence. Stage-aligned verification then determines whether and where recovery is needed.</figcaption>
+        </figure>
+      </section>
+
+      <section class="results-section" aria-labelledby="results-title">
+        <div class="visual-heading"><span id="results-title">Experimental results</span></div>
+        <p class="results-intro">Across three base MLLMs and two video spatial reasoning benchmarks, ReTAC achieves the best overall score in every setting.</p>
+        <div class="results-grid">
+          <article class="result-panel">
+            <div class="result-panel-heading"><h3>VSI-Bench-Debiased</h3></div>
+            <div class="table-scroll" tabindex="0" aria-label="VSI-Bench-Debiased overall results table">
+              <table>
+                <thead><tr><th scope="col">Base model</th><th scope="col">Direct</th><th scope="col">CoT</th><th scope="col">S&amp;T</th><th scope="col">Think3D</th><th scope="col">ReTAC</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Qwen3-VL-8B</th><td>47.73</td><td>48.59</td><td>48.27</td><td>48.99</td><td class="retac-score">53.49 <small>+5.76</small></td></tr>
+                  <tr><th scope="row">Gemini 3.1 Pro</th><td>48.77</td><td>50.24</td><td>51.89</td><td>51.28</td><td class="retac-score">53.80 <small>+5.03</small></td></tr>
+                  <tr><th scope="row">GPT-5.5</th><td>61.01</td><td>61.40</td><td>59.98</td><td>61.26</td><td class="retac-score">62.38 <small>+1.37</small></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+          <article class="result-panel">
+            <div class="result-panel-heading"><h3>STI-Bench</h3></div>
+            <div class="table-scroll" tabindex="0" aria-label="STI-Bench overall results table">
+              <table>
+                <thead><tr><th scope="col">Base model</th><th scope="col">Direct</th><th scope="col">CoT</th><th scope="col">S&amp;T</th><th scope="col">Think3D</th><th scope="col">ReTAC</th></tr></thead>
+                <tbody>
+                  <tr><th scope="row">Qwen3-VL-8B</th><td>39.87</td><td>41.23</td><td>40.28</td><td>40.87</td><td class="retac-score">44.50 <small>+4.63</small></td></tr>
+                  <tr><th scope="row">Gemini 3.1 Pro</th><td>49.47</td><td>50.00</td><td>49.37</td><td>50.08</td><td class="retac-score">51.33 <small>+1.86</small></td></tr>
+                  <tr><th scope="row">GPT-5.5</th><td>49.61</td><td>50.24</td><td>50.08</td><td>50.76</td><td class="retac-score">52.14 <small>+2.53</small></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+        <p class="results-note"><strong>Overall score (%).</strong> VSI-Bench-Debiased uses the mean of eight task scores; STI-Bench reports sample-weighted accuracy. S&amp;T denotes See&amp;Trek. Green values are ReTAC; the accompanying number is its gain over Direct QA, in percentage points. Task-wise scores are reported in Table 1 (VSI-Bench-Debiased) and Table 2 (STI-Bench) of the paper.</p>
+      </section>
+
+      <section class="visual-section case-study" aria-label="Case study">
+        <div class="visual-heading"><span>Case study</span></div>
+        <figure class="case-figure">
+          <img src="assets/case-study-1.png" alt="Case 1: native-state-guided residual routing compares direct return for GPT-5.5 with residual refinement for Qwen3-VL-8B.">
+          <figcaption><strong>Case 1: Native-state-guided residual routing.</strong> For the same video question, GPT-5.5 resolves both requirements from its native state and returns directly. Qwen3-VL-8B leaves the directional relation unresolved, so ReTAC plans only the residual steps: object detection, reconstruction, and direction computation.</figcaption>
+        </figure>
+        <figure class="case-figure">
+          <img src="assets/case-study-2.png" alt="Case 2: stage-aligned verification identifies a reasoning error and selectively re-reasons while preserving the validated plan and evidence.">
+          <figcaption><strong>Case 2: Stage-aligned error localization and selective recovery.</strong> Planning and perception are verified as valid, but the reasoner mistakes object enumeration for temporal order. ReTAC preserves the validated evidence, re-reasons from the first-appearance frame indices, and recovers the correct order.</figcaption>
+        </figure>
+      </section>
+
+    </main>
+
+    <dialog id="citation-dialog">
+      <button id="close-dialog" class="close" aria-label="Close citation dialog">×</button>
+      <h2>Citation</h2>
+      <pre id="bibtex"></pre>
+      <button id="copy-bibtex" class="button primary" type="button">Copy BibTeX</button>
+    </dialog>
+    <footer>ReTAC: Residual Test-Time Agentic Computation for Video Spatial Reasoning</footer>
+  </body>
+</html>

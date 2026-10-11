@@ -10,13 +10,14 @@ window.RETAC_SITE = {
     "Xiaoqin Zhang<sup>3</sup>", "Ling Shao<sup>4</sup>", "Shijian Lu<sup>1,*</sup>"
   ],
   affiliation: "<sup>1</sup>Nanyang Technological University &nbsp;&nbsp; <sup>2</sup>Xiaohongshu Inc.<br><sup>3</sup>Zhejiang University of Technology &nbsp;&nbsp; <sup>4</sup>University of the Chinese Academy of Sciences<br><sup>*</sup>Co-corresponding authors",
-  paperUrl: "assets/ReTAC.pdf",
+  paperUrl: null,
   arxivUrl: null,
-  codeUrl: null,
-  bibtex: `@article{retac2026,
+  codeUrl: "https://github.com/yike-wu/ReTAC/tree/main/code",
+  bibtex: `@misc{wu2026retac,
   title   = {ReTAC: Residual Test-Time Agentic Computation for Video Spatial Reasoning},
   author  = {Wu, Yike and Chen, Keyan and Wang, Qixiong and Xiang, Xi and Que, Maofei and Jiang, Xiaolong and Zhang, Xiaoqin and Shao, Ling and Lu, Shijian},
-  journal = {arXiv preprint},
-  year    = {2026}
+  year    = {2026},
+  howpublished = {Preprint},
+  url     = {https://yike-wu.github.io/ReTAC/}
 }`
 };

@@ -10,6 +10,7 @@ h1 { max-width: 900px; margin: 12px 0 24px; font-family: Georgia, "Times New Rom
 .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 30px 0 18px; }
 .button { appearance: none; border: 1px solid var(--ink); border-radius: 100px; background: transparent; color: var(--ink); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font: inherit; font-weight: 700; padding: 10px 17px; text-decoration: none; }
 .button:hover { background: #e9eee8; }
+.button[hidden] { display: none; }
 .button.primary { background: var(--ink); color: white; border-color: var(--ink); }
 .button.primary:hover { background: var(--accent); border-color: var(--accent); }
 .notice { border-left: 3px solid var(--yellow); font-size: .88rem; max-width: 720px; padding-left: 12px; }

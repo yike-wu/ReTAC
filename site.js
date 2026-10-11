@@ -2,9 +2,7 @@ const config = window.RETAC_SITE;
 
 document.querySelector("#authors").innerHTML = config.authors.join(" &nbsp; ");
 document.querySelector("#affiliation").innerHTML = config.affiliation;
-document.querySelector("#paper-link").href = config.paperUrl;
-
-for (const [key, selector] of [["arxivUrl", "#arxiv-link"], ["codeUrl", "#code-link"]]) {
+for (const [key, selector] of [["paperUrl", "#paper-link"], ["arxivUrl", "#arxiv-link"], ["codeUrl", "#code-link"]]) {
   if (config[key]) {
     const link = document.querySelector(selector);
     link.href = config[key];

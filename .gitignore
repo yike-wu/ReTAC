@@ -1,0 +1,13 @@
+.DS_Store
+/assets/ReTAC.pdf
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+review/
+results/
+logs/
+checkpoints/
+*.log

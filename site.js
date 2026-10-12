@@ -7,6 +7,9 @@ for (const [key, selector] of [["paperUrl", "#paper-link"], ["arxivUrl", "#arxiv
     const link = document.querySelector(selector);
     link.href = config[key];
     link.hidden = false;
+    link.removeAttribute("aria-disabled");
+    link.removeAttribute("aria-label");
+    link.removeAttribute("title");
   }
 }
 

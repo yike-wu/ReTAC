@@ -1,7 +1,7 @@
 /*
  * Public project-page settings.
- * Set a URL to null to hide the corresponding button. Add arxivUrl once the
- * submission is announced.
+ * Null paper/code URLs hide those buttons. A null arxivUrl keeps arXiv visible
+ * but disabled; fill in its URL once the paper is available on arXiv.
  */
 window.RETAC_SITE = {
   authors: [

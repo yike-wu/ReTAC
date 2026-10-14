@@ -11,7 +11,7 @@ window.RETAC_SITE = {
   ],
   affiliation: "<sup>1</sup>Nanyang Technological University &nbsp;&nbsp; <sup>2</sup>Xiaohongshu Inc.<br><sup>3</sup>Zhejiang University of Technology &nbsp;&nbsp; <sup>4</sup>University of the Chinese Academy of Sciences<br><sup>*</sup>Co-corresponding authors",
   paperUrl: null,
-  arxivUrl: null,
+  arxivUrl: https://arxiv.org/pdf/2610.16315,
   codeUrl: "https://github.com/yike-wu/ReTAC/tree/main/code",
   bibtex: `@misc{wu2026retac,
   title   = {ReTAC: Residual Test-Time Agentic Computation for Video Spatial Reasoning},
